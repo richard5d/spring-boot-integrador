@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{layout/layout :: head}"></head>
+
+<body>
+
+	<nav th:replace="~{layout/layout :: nav}"></nav>
+
+	<div class="container-fluid">
+
+		<div class="row">
+
+			<div th:replace="~{layout/layout :: menulateral}"></div>
+
+			<div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 bg-gray">
+				<div class="row">
+					
+					<div class="col-12 mt-3">
+						
+							<h3 class="text-center">Mis Medicamentos Solicitados</h3>
+					
+
+						
+							<div class="alert alert-success alert-dismissible fade show"
+								th:if="${mensaje}!=null" role="alert">
+								<label th:text="${mensaje}"></label>
+							</div>
+
+
+							<table id="ListadoTabla"
+								class="table table-bordered table-hover mt-5">
+								<thead class="table-success">
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">MEDICAMENTO</th>
+										<th scope="col">IMAGEN</th>
+										<th scope="col">DESCRIPCION</th>
+										<th scope="col">INSTRUCCIONES</th>
+										
+										<th scope="col">PRECIO</th>
+										<th scope="col">ELIMINAR</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="m : ${medicamentos}">
+										<td th:text="${m.id}"></td>
+										<td th:text="${m.medicamento.nombre}"></td>
+										<td><img height="100px"  th:src="@{/medicamento/display/}+${m.medicamento.id}" alt="NO HAY IMAGEN"></td>
+										<td th:text="${m.medicamento.descripcion}"></td>
+										<td th:text="${m.medicamento.instrucciones}"></td>
+										<td th:text="${m.medicamento.precio}"></td>
+										<td><a th:href="@{/pacientemedicamento/delete/}+${m.id}"
+											class="btn btn-danger"
+											onclick="return confirm('Estas Seguro de Eliminar');">Eliminar</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+					
+					</div>
+				
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+
+</html>

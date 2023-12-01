@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}"></head>
+<body>
+	<nav th:replace="~{layout/layout :: nav}"></nav>
+
+
+	<div class="container-fluid
+	">
+		<div class="row">
+
+			<div th:replace="~{layout/layout :: menulateral}"></div>
+
+			<div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 bg-gray">
+
+				<div class="row">
+					<div class="col-3"></div>
+					<div class="col-6 mt-3">
+						<div class="card text-bg-white mb-3 block">
+							<div class="card-header text-center text-bg-success">IMAGEN</div>
+							<div th:if="${mensaje}" th:text="${mensaje}"
+								class="alert alert-success"></div>
+							<div th:if="${error}" th:text="${error}"
+								class="alert alert-danger"></div>
+							<div class="card-body">
+								<form th:action="@{/usuario/imagen}"
+									enctype="multipart/form-data" method="post">
+									<div class="form-group mb-2">
+										<div class="row">
+											<div class="col-3"></div>
+											<div class="col-6">
+												<div th:if="${usuario.image == null}" class="card">
+													<img th:src="@{/imagenes/imagendefault.jpg}" alt="IMAGEN">
+												</div>
+												<div th:if="${usuario.image != null}" class="card">
+													<img th:src="@{/usuario/display}" alt="no hay imagen">
+												</div>
+											</div>
+											<div class="col-3"></div>
+										</div>
+									</div>
+									<div class="input-group">
+										<input type="file" class="form-control" id="image" accept="image/jpeg,image/png,image/jpg,image/webp,image/avif"
+											name="image" aria-describedby="inputGroupFileAddon04"
+											aria-label="Upload" required="required">
+										<button class="btn btn-outline-secondary" type="submit">Editar
+											Imagen</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-3"></div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+	<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+</html>

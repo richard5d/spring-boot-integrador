@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}"></head>
+<body>
+	<nav th:replace="~{layout/layout :: nav}"></nav>
+
+	<div class="container-fluid">
+
+		<div class="row">
+
+			<div th:replace="~{layout/layout :: menulateral}"></div>
+
+			<div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 bg-gray">
+				<div class="row">
+					<div class="col-3"></div>
+					<div class="col-6 mt-3">
+						<div class="card text-bg-white mb-3">
+							<div class="card-header text-center text-bg-success"
+								th:text="${titulo}"></div>
+							<div class="card-body">
+								<form th:action="@{/receta/}+${ruta}" th:object="${receta}"
+									method="post">
+									<div class="form-group mt-3">
+										<label for="inputTitulo"> PACIENTE : </label> <select
+											class="form-control" th:field="*{historialmedico}" required>
+											<option th:each="h : ${historias}"
+												th:text="${h.paciente.user.nombre}" th:value="${h.id}"></option>
+										</select>
+									</div>
+
+									<div class="form-group mt-3">
+										<label for="inputTitulo"> MEDICAMENTO : </label> <select
+											class="form-control" th:field="*{medicamento}" required>
+											<option th:each="m : ${medicamentos}" th:text="${m.nombre}"
+												th:value="${m.id}"></option>
+										</select>
+									</div>
+
+									<div class="form-group mt-4">
+										<label for="inputTitulo"> CANTIDAD : </label> <input
+											type="number" class="form-control" th:field="*{cantidad}"
+											>
+										<div class="alert alert-danger mt-1"
+											th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}"></div>
+									</div>
+									
+
+									<div class="form-group mt-4">
+										<label for="inputTitulo"> INSTRUCCIONES : </label> <input
+											type="text" class="form-control" th:field="*{instrucciones}"
+											>
+										<div class="alert alert-danger mt-1"
+											th:if="${#fields.hasErrors('instrucciones')}" th:errors="*{instrucciones}"></div>
+									</div>
+
+									<div class="form-group text-center mt-4">
+										<input type="submit" class="form-control btn-primary btn"
+											th:value="${titulo}">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-3"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+</html>

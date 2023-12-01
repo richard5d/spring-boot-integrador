@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{layout/layout :: head}"></head>
+
+<body>
+
+	<nav th:replace="~{layout/layout :: nav}"></nav>
+
+	<div class="container-fluid">
+
+		<div class="row">
+
+			<div th:replace="~{layout/layout :: menulateral}"></div>
+
+			<div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 bg-gray">
+				<div class="row">
+					<div class="col-3"></div>
+					<div class="col-6 mt-3">
+						<div class="card text-bg-white mb-3">
+							<div class="card-header text-center text-bg-success"
+								th:text="${titulo}"></div>
+							<div th:if="${error}" th:text="${error}"
+								class="alert alert-success"></div>
+							<div class="card-body">
+
+								<form th:action="@{/historial/}+${ruta}"
+									th:object="${historial}" method="post">
+
+									<div class="form-group mt-4">
+										<label for="inputTitulo"> PACIENTE : </label> <input
+											type="text" class="form-control"
+											th:field="*{paciente.user.nombre}" readonly="readonly"
+											required="required">
+									</div>
+
+									<div class="form-group mt-4">
+										<label for="inputTitulo"> APELLIDO : </label> <input
+											type="text" class="form-control"
+											th:field="*{paciente.user.apellido}" readonly="readonly"
+											required="required">
+									</div>
+
+									<div class="form-group mt-4">
+										<label for="inputTitulo"> FECHA : </label> <input type="date"
+											class="form-control" th:field="*{fecha}">
+										<div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
+									</div>
+									<div class="form-group mt-4">
+										<label for="inputTitulo"> HORA : </label> <input type="time"
+											class="form-control" th:field="*{hora}" >
+										<div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}"></div>
+									</div>
+
+									<div class="form-group mt-4">
+										<label for="inputTitulo"> DIAGNOSTICO : </label> <input
+											type="text" class="form-control" th:field="*{diagnostico}"
+											placeholder="Diagnostico" >
+										<div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('diagnostico')}" th:errors="*{diagnostico}"></div>
+									</div>
+
+									<div class="form-group mt-4">
+										<label for="inputTitulo"> TRATAMIENTO : </label> <input
+											type="text" class="form-control" th:field="*{tratamiento}"
+											placeholder="Tratamiento">
+										<div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('tratamiento')}" th:errors="*{tratamiento}"></div>
+									</div>
+
+
+									<div class="form-group text-center mt-4">
+										<input type="submit" class="form-control btn-primary btn"
+											th:value="${titulo}">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-3"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+
+</html>

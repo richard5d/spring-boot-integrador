@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{layout/layout :: head}"></head>
+
+<body>
+
+	<nav th:replace="~{layout/layout :: nav}"></nav>
+
+	<div class="container-fluid">
+
+		<div class="row">
+
+			<div th:replace="~{layout/layout :: menulateral}"></div>
+
+			<div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 bg-gray">
+				<div class="row">
+					
+					<div class="col-12 mt-3">
+						
+							<h3 class="text-center">Lista De Pacientes</h3>
+						
+
+						
+							<div class="alert alert-success alert-dismissible fade show"
+								th:if="${mensaje}!=null" role="alert">
+								<label th:text="${mensaje}"></label>
+							</div>
+
+
+							<table id="ListadoTabla"
+								class="table table-bordered table-hover mt-5">
+								<thead class="table-success">
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">NOMBRE</th>
+										<th scope="col">APELLIDO</th>
+										<th scope="col">EMAIL</th>
+										<th scope="col">EDITAR HISTORIAL MEDICO</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="p : ${pacientes}">
+										<td th:text="${p.id}"></td>
+										<td th:text="${p.user.nombre}"></td>
+										<td th:text="${p.user.apellido}"></td>
+										<td th:text="${p.user.email}"></td>
+										<td><a th:href="@{/historial/update/}+${p.id}"
+											class="btn btn-primary">Editar Historial Medico</a></td>
+									</tr>
+								</tbody>
+							</table>
+						
+					</div>
+					
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+
+</html>

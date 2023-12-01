@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}"></head>
+<body>
+	<nav th:replace="~{layout/layout :: nav}"></nav>
+
+	<div class="container-fluid">
+
+		<div class="row">
+
+			<div th:replace="~{layout/layout :: menulateral}"></div>
+
+			<div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 bg-gray">
+				<div class="row">
+					<div class="col-3"></div>
+					<div class="col-6 mt-3">
+						<div class="card text-bg-white mb-3">
+							<div class="card-header text-center text-bg-success"
+								th:text="${titulo}"></div>
+							<div th:if="${error}" th:text="${error}" class="alert alert-danger"></div>
+							<div class="card-body">
+								<form th:action="@{/medico/}+${ruta}" th:object="${medico}"
+									method="post" enctype="multipart/form-data">
+									<div class="form-group mt-3">
+										<label for="inputTitulo"> EMAIL : </label> 
+										<input type="email"
+											class="form-control" th:field="*{user.email}"
+											placeholder="Email" th:if="${ruta == 'create'}">
+										<input type="email"
+											class="form-control" th:field="*{user.email}"
+											placeholder="Email" readonly="readonly" th:if="${ruta != 'create'}">
+										<div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}"></div>
+									</div>
+									
+									<div class="form-group mt-3" th:if="${ruta == 'create'}">
+										<label for="inputTitulo"> PASSWORD : </label> <input type="password"
+											class="form-control" th:field="*{user.password}"
+											placeholder="Password">
+										<div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}"></div>
+									</div>
+									
+									<input
+											type="hidden" class="form-control" th:field="*{user.password}" th:if="${ruta != 'create'}" >
+									
+									<div class="form-group mt-3">
+										<label for="inputTitulo"> NOMBRE : </label> <input type="text"
+											class="form-control" th:field="*{user.nombre}"
+											placeholder="Nombre">
+										<div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('user.nombre')}" th:errors="*{user.nombre}"></div>
+									</div>
+									<div class="form-group mt-3">
+										<label for="inputTitulo"> APELLIDO : </label> <input
+											type="text" class="form-control" th:field="*{user.apellido}"
+											placeholder="Apellido">
+										<div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('user.apellido')}" th:errors="*{user.apellido}"></div>
+									</div>
+									
+									
+								
+									<div class="form-group mt-3">
+										<label for="inputTitulo"> ESPECIALIDAD : </label> <select
+											class="form-control" th:field="*{especialidad}">
+											<option value="">Seleccione una Opcion</option>
+											<option value="Pediatria">Pediatria</option>
+											<option value="Endocrinologia">Endocrinologia</option>
+											<option value="Cardiologia">Cardiologia</option>
+											<option value="Dermatologia">Dermatologia</option>
+											<option value="Radiologia">Radiologia</option>
+											<option value="Ginecologia">Ginecologia</option>
+											<option value="Neumologia">Neumologia</option>
+											<option value="Neurologia">Neurologia</option>
+
+										</select>
+										<div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('especialidad')}" th:errors="*{especialidad}"></div>
+									</div>
+									<div class="form-group mt-4" th:if="${ruta != 'create'}">
+										<div class="row">
+											<div class="col-3"></div>
+											<div class="col-6">
+												<div class="card">
+													<img class="card-img-top"
+														th:src="@{/medico/display/}+${medico.id}" alt="NO HAY IMAGEN" />
+												</div>
+
+											</div>
+											<div class="col-3"></div>
+										</div>
+
+									</div>
+									<div class="form-group mt-4">
+										<input type="file" class="form-control" id="image"
+											name="imagen" aria-describedby="inputGroupFileAddon04"
+											aria-label="Upload">
+
+									</div>
+									<div class="form-group text-center mt-3">
+										<input type="submit" class="form-control btn-primary btn"
+											th:value="${titulo}">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-3"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+</html>

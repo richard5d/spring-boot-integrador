@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}"></head>
+<body>
+	<nav th:replace="~{layout/layout :: nav}"></nav>
+	<div class="container">
+		<div class="row mt-4">
+			<div class="col-12 col-sm-1 col-md-3"></div>
+			<div class="col-md-6 col-sm-10 col-12">
+				<h3 class="text-center">Iniciar Sesion</h3>
+				<div th:if="${error}" th:text="${error}" class="alert alert-danger"></div>
+				<div th:if="${success}" th:text="${success}" class="alert alert-success"></div>
+				<div class="card">
+					<img class="card-img-top" th:src="@{/imagenes/login55555k.png}" height="300" alt="no se encontro" />
+				</div>
+				<form th:action="@{/login}" method="post">
+					<div class="form-group mt-3">
+						<label for="inputTitulo"> EMAIL : </label> <input type="text"
+							class="form-control" name="username" placeholder="Username"
+							>
+					</div>
+					<div class="form-group mt-3">
+						<label for="inputTitulo"> PASSWORD : </label> <input
+							type="password" class="form-control" name="password"
+							placeholder="Password">
+					</div>
+					<div class="form-group text-center my-3">
+						<input type="submit" class="form-control btn-primary btn"
+							value="Iniciar Sesion">
+					</div>
+				</form>
+			</div>
+			<div class="col-12 col-sm-1 col-md-3"></div>
+		</div>
+	</div>
+<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout/layout :: head}"></head>
+
+<body>
+	<nav th:replace="~{layout/layout :: nav}"></nav>
+
+
+
+	<div class="container">
+
+		
+
+		<!-- Carousel -->
+		<div class="row">
+			<div class="col">
+				<div id="slideshow" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img th:src="@{/imagenes/imagen1.png}"
+								th:alt="${'no se encontro imagen'}" class="w-100">
+						</div>
+						<div class="carousel-item">
+							<img th:src="@{/imagenes/imagen2.png}"
+								th:alt="${'no se encontro imagen'}" class="w-100">
+						</div>
+						<div class="carousel-item">
+							<img th:src="@{/imagenes/imagen3.png}"
+								th:alt="${'no se encontro imagen'}" class="w-100">
+						</div>
+					</div>
+					<!-- Controles de Anterior y Siguiente -->
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#slideshow" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon bg-success"
+							aria-hidden="true"></span> <span class="visually-hidden">Anterior</span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#slideshow" data-bs-slide="next">
+						<span class="carousel-control-next-icon bg-success"
+							aria-hidden="true"></span> <span class="visually-hidden">Siguiente</span>
+					</button>
+					<!-- Indicadores -->
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#slideshow"
+							data-bs-slide-to="0" class="active" aria-current="true"
+							aria-label="Slide #1"></button>
+						<button type="button" data-bs-target="#slideshow"
+							data-bs-slide-to="1" aria-current="true" aria-label="Slide #2"></button>
+						<button type="button" data-bs-target="#slideshow"
+							data-bs-slide-to="2" aria-current="true" aria-label="Slide #3"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row my-5">
+		  <h3 class="text-center">Nuestros Medicamentos</h3>
+		</div>
+
+		<div class="row row-cols-0 row-cols-md-3 g-5 mb-5">
+
+			<div class="col-12" th:each="m : ${medicamentos}">
+				<div class="card">
+					<img class="card-img-top" th:if="${m.image != null}" th:src="@{/medicamento/display/}+${m.id}" height="250px"
+						alt="NO HAY IMAGEN">
+						
+					<img class="card-img-top" th:if="${m.image == null}" th:src="@{/imagenes/medicamento.png}" alt="IMAGEN" height="250px">
+					<div class="card-body">
+						<h3 class="card-title text-center"
+							th:text="'Medicamento : '+${m.nombre}"></h3>
+
+
+						<p class="card-text text-center" th:text="'Descripcion : '+${m.descripcion}"></p>
+						<p class="card-text text-center" th:text="'Instrucciones : '+${m.instrucciones}"></p>
+						<p class="card-text text-center" th:text="'Precio : '+${m.precio}"></p>
+						<p class="card-text">
+						
+						
+						<a sec:authorize="!isAuthenticated()" th:href="@{'/pacientemedicamento/create/'}+${m.id}"
+							class="btn btn-sm btn-primary p-2 fw-semibold" style="display:block;">Solicitar Medicamento</a>
+							
+						<a sec:authorize="hasAnyAuthority('P')" th:href="@{'/pacientemedicamento/create/'}+${m.id}"
+							class="btn btn-sm btn-primary p-2 fw-semibold" style="display:block;">Solicitar Medicamento</a>
+						
+						<a sec:authorize="hasAnyAuthority('A')" th:href="@{'/medicamento/update/'}+${m.id}"
+							class="btn btn-sm btn-primary p-2 fw-semibold" style="display:block;">Editar Medicamento</a>
+						</p>
+						
+						    
+						
+						 
+
+
+
+					</div>
+				</div>
+				
+				
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}"></head>
+<body>
+	<nav th:replace="~{layout/layout :: nav}"></nav>
+	<div class="container">
+
+		<!-- Carousel -->
+		<div class="row">
+			<div class="col">
+				<div id="slideshow" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img th:src="@{/imagenes/imagen1.png}"
+								th:alt="${'no se encontro imagen'}" class="w-100">
+						</div>
+						<div class="carousel-item">
+							<img th:src="@{/imagenes/imagen2.png}"
+								th:alt="${'no se encontro imagen'}" class="w-100">
+						</div>
+						<div class="carousel-item">
+							<img th:src="@{/imagenes/imagen3.png}"
+								th:alt="${'no se encontro imagen'}" class="w-100">
+						</div>
+					</div>
+					<!-- Controles de Anterior y Siguiente -->
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#slideshow" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon bg-success"
+							aria-hidden="true"></span> <span class="visually-hidden">Anterior</span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#slideshow" data-bs-slide="next">
+						<span class="carousel-control-next-icon bg-success"
+							aria-hidden="true"></span> <span class="visually-hidden">Siguiente</span>
+					</button>
+					<!-- Indicadores -->
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#slideshow"
+							data-bs-slide-to="0" class="active" aria-current="true"
+							aria-label="Slide #1"></button>
+						<button type="button" data-bs-target="#slideshow"
+							data-bs-slide-to="1" aria-current="true" aria-label="Slide #2"></button>
+						<button type="button" data-bs-target="#slideshow"
+							data-bs-slide-to="2" aria-current="true" aria-label="Slide #3"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row m-5 text-center">
+				<h2>Bienvenido a CIBERSALUD</h2>
+				<p>Tu salud, nuestra prioridad. Ofrecemos una amplia gama de
+					productos farmacéuticos y servicios para tu bienestar.</p>
+			</div>
+
+			<div class="row">
+
+				<div class="col-12 col-sm-6 col-md-6">
+					<div class="card">
+						<img class="card-img-top" th:src="@{/imagenes/producto1.png}"
+							alt="Producto 1">
+						
+					</div>
+				</div>
+				<div class="col-12 col-sm-6 col-md-6">
+					<div class="card">
+						<img class="card-img-top" th:src="@{/imagenes/producto2.png}"
+							alt="Producto 1">
+						
+					</div>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row mt-2">
+			<div class="col-12 col-md-6 p-5 bg-success-subtle">
+				<h2>Nosotros</h2>
+				<p> En CiberSalud, somos un equipo apasionado por la salud y la tecnología. 
+				Nos esforzamos por mejorar la vida de las personas al proporcionar una solución innovadora y 
+				fácil de usar para programar citas médicas. Nuestra plataforma está diseñada con un enfoque 
+				en la accesibilidad y la confiabilidad. Valoramos la salud y el bienestar de nuestros usuarios 
+				y trabajamos en estrecha colaboración con profesionales de la salud para garantizar una experiencia 
+				de citas médicas sin complicaciones.</p>
+
+			</div>
+
+			<div class="col-12 col-md-6 p-5 bg-success-subtle">
+				<h2>Mision</h2>
+				<p>Nuestra misión en CiberSalud es facilitar el acceso a servicios médicos de calidad, 
+				conectando a pacientes con profesionales de la salud de manera sencilla y conveniente. 
+				Estamos comprometidos a mejorar la atención médica al proporcionar a nuestros usuarios 
+				la capacidad de programar citas médicas de manera eficiente, reduciendo las barreras para 
+				recibir atención médica oportuna y personalizada.</p>
+				<h2 class="mt-4">Vision</h2>
+				<p>Nuestra visión es convertirnos en la aplicación de referencia en el campo de las citas médicas 
+				en línea. Queremos ser reconocidos por nuestra contribución a la mejora de la atención médica, 
+				haciendo que sea más accesible y eficiente para todos. Aspiramos a ser una plataforma global que
+				 conecta a millones de pacientes con los profesionales de la salud adecuados en todo momento. 
+				 Planeamos seguir innovando, expandiendo nuestras características y servicios, y estableciendo
+				  estándares de excelencia en el sector de la salud en línea.</p>
+			</div>
+		</div>
+
+		<div class="row  mt-4">
+			<h2 class="text-center mb-5">Valores</h2>
+			<div class="col-12 col-md-4 p-5">
+				<div class="card">
+					<img class="card-img-top" th:src="@{/imagenes/creatividad.png}"
+						alt="">
+					<div class="card-body">
+						<h3 class="card-title text-center">Creatividad</h3>
+						
+
+					</div>
+				</div>
+
+			</div>
+			<div class="col-12 col-md-4 p-5">
+				<div class="card">
+					<img class="card-img-top" th:src="@{/imagenes/logica.png}" alt="">
+					<div class="card-body">
+						<h3 class="card-title text-center">Logica</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-md-4 p-5">
+				<div class="card">
+					<img class="card-img-top" th:src="@{/imagenes/compromiso.png}"
+						alt="">
+					<div class="card-body">
+						<h3 class="card-title text-center">Compromiso</h3>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row my-4">
+			<div class="col-12 col-md-6">
+				<div class="card p-5">
+					<h2 class="text-center">Publico Objetivo</h2>
+				</div>
+
+			</div>
+			<div class="col-12 col-md-6">
+				<div class="card p-5">
+					<p class="text-center">Nuestro público objetivo incluye a personas de todas las edades que buscan programar 
+					citas médicas de manera rápida y sencilla. Esto abarca desde individuos que requieren atención médica 
+					regular, como chequeos de salud y consultas especializadas, hasta aquellos que buscan atención inmediata 
+					para problemas de salud específicos. También nos dirigimos a profesionales de la salud interesados en 
+					ofrecer sus servicios a través de nuestra plataforma. En [Nombre de la Aplicación], nos esforzamos por 
+					atender a la diversidad de necesidades médicas de nuestros usuarios y brindarles una experiencia de citas
+					 médicas sin complicaciones.</p>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+	</div>
+	<footer th:replace="~{layout/layout :: footer}">
+	</footer>
+</body>
+</html>
